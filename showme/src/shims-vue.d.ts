@@ -8,5 +8,6 @@ declare module '*.name' {
   interface name {
     name: string
   }
-  export default name
+  const a:name
+  export default a
 }
