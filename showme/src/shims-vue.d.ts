@@ -3,3 +3,10 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare module '*.name' {
+  interface name {
+    name: string
+  }
+  export default name
+}
