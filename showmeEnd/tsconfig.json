@@ -7,6 +7,6 @@
         "allowJs": true
     },
     "include": [
-        "./app/**/*"
+        "./app/**/*", "index.ts"
     ]
 }
