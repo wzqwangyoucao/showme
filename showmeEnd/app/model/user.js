@@ -5,7 +5,7 @@ const {
 const userInfoSchema = new Schema({
     __v: { type: Number, select: false },
     userName: { type: String, require: true },
-    password: { type: String, require: true, select: false }
+    password: { type: String, require: true }
 });
 
-module.exports = model('userInfooModel', userInfoSchema);
+module.exports = model('userInfooModel', userInfoSchema)

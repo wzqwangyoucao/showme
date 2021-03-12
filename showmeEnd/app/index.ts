@@ -21,3 +21,4 @@ app.use(parameter(app))
 routing(app)
 
 app.listen(3002);
+export {};
