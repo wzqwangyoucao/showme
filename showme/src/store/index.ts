@@ -1,9 +1,8 @@
 import { createStore } from 'vuex'
+import userInfo from './userInfo'
 
 export const store = createStore({
-  state() {
-    return {
-      count: 1
-    }
+  modules: {
+    userInfo
   }
 })
