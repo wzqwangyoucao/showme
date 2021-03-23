@@ -3,10 +3,10 @@
     <input type="text" v-model="userName" />
     密码：
     <input type="text" v-model="password" />
-    <button @click="login">登录</button>
+    <button @click="register">登录</button>
 </template>
 <script lang="ts">
-import { userLogin, userInfo } from "../api";
+import { userRegister, userInfo } from "../../api";
 import { defineComponent, reactive, toRefs } from "vue";
 
 export default defineComponent({
@@ -16,13 +16,14 @@ export default defineComponent({
             password: "",
         });
 
-        function login() {
-            userLogin({userName: userInfo.password, password: userInfo.userName}).then(res => {
-                console.log(res.data.name)
+        function register() {
+            userRegister({userName: userInfo.password, password: userInfo.userName}).then(res => {
+                console.log(res.data)
+                sessionStorage.setItem('token', res.data.token)
             })
         }
 
-        return { ...toRefs(userInfo), login };
+        return { ...toRefs(userInfo), register };
     },
     methods: {}
 });

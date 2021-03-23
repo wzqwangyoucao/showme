@@ -35,7 +35,7 @@ class UserCtl {
     }
     async loginUser(ctx) {
         ctx.verifyParams({
-            name: {type: 'string', required: true},
+            userName: {type: 'string', required: true},
             password: {type: 'string', required: true}
         })
         const user = await userInfooModel.findOne(ctx.request.body)
@@ -49,6 +49,21 @@ class UserCtl {
     async judgeSelf(ctx) {
         if(ctx.params.id !== ctx.state.user._id) {
             ctx.throw(403, '无操作权限')
+        }
+    }
+    async getUserInfo(ctx) {
+        const userInfo = await userInfooModel.findOne({_id: ctx.state.user._id})
+        ctx.body = { userInfo }
+    }
+
+    async judgeUserLogin(ctx) {
+        const { authorization = '' } = ctx.request.header
+        const token = authorization.replace('Bearer ', '') // 前端设置在token中会在header中增加authorization字段 然后也会在jsonWebToken上增加Bearer字段
+        try {
+            const user = jsonWebToken.verify(token, secret);
+            ctx.body =  true
+        } catch (err) {
+            ctx.body =  false
         }
     }
 }
